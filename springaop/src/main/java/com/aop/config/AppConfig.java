@@ -10,11 +10,12 @@ import org.springframework.context.annotation.*;
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan("com.aop")
-@Import(MyImportBeandefinationRegister.class)
+@Import({MyImportBeandefinationRegister.class, MyImportSelector.class})
 public class AppConfig {
 
     @Bean
-    Integer integer(){
-        return new Integer(1);
+    Integer integer() {
+        return 1;
     }
+
 }

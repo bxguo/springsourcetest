@@ -26,8 +26,18 @@ public class MyImportBeandefinationRegister implements ImportBeanDefinitionRegis
         GenericBeanDefinition beanDefinition = (GenericBeanDefinition) builder.getBeanDefinition();
 
         //设置beanDefinition
-        beanDefinition.getConstructorArgumentValues().addGenericArgumentValue(CardDao.class.getName());
-        beanDefinition.setBeanClass(CardDaoFactoryBean.class);
+        //beanDefinition.getConstructorArgumentValues().addGenericArgumentValue(CardDao.class);
+        Class<?> proxy = Proxy.newProxyInstance(
+                this.getClass().getClassLoader(),
+                new Class[]{CardDao.class},
+                new InvocationHandler() {
+                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                        System.out.println("proxy");
+                        return null;
+                    }
+                }
+        ).getClass();
+        beanDefinition.setBeanClass(proxy);
 
         //注册.beanDefinition
         registry.registerBeanDefinition(CardDao.class.getSimpleName(), beanDefinition);
