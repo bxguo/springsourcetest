@@ -28,7 +28,7 @@ public class CardDaoFactoryBean implements FactoryBean, InvocationHandler {
     }
 
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("proxy");
+        System.out.println("proxy---------");
         return null;
     }
 }

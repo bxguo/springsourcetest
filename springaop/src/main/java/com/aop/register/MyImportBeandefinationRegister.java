@@ -22,24 +22,16 @@ public class MyImportBeandefinationRegister implements ImportBeanDefinitionRegis
 
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         //获取beanDefinition
-        BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(CardDao.class);
-        GenericBeanDefinition beanDefinition = (GenericBeanDefinition) builder.getBeanDefinition();
+        BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(CardDaoFactoryBean.class);
+        builder.addConstructorArgValue(CardDao.class);
+
 
         //设置beanDefinition
-        //beanDefinition.getConstructorArgumentValues().addGenericArgumentValue(CardDao.class);
-        Class<?> proxy = Proxy.newProxyInstance(
-                this.getClass().getClassLoader(),
-                new Class[]{CardDao.class},
-                new InvocationHandler() {
-                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                        System.out.println("proxy");
-                        return null;
-                    }
-                }
-        ).getClass();
-        beanDefinition.setBeanClass(proxy);
+        /*GenericBeanDefinition beanDefinition = (GenericBeanDefinition) builder.getBeanDefinition();
+        beanDefinition.getConstructorArgumentValues().addGenericArgumentValue(CardDao.class);
+        beanDefinition.setBeanClass(CardDaoFactoryBean.class);*/
 
         //注册.beanDefinition
-        registry.registerBeanDefinition(CardDao.class.getSimpleName(), beanDefinition);
+        registry.registerBeanDefinition(CardDao.class.getSimpleName(), builder.getBeanDefinition());
     }
 }

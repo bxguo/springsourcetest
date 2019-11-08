@@ -7,6 +7,7 @@ import com.aop.dao.IndexDaoimpl;
 import com.aop.register.CardDaoFactoryBean;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigUtils;
+import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -30,19 +31,6 @@ public class main {
         //ImportBeanDefinitionRegistrar 测试
         CardDao cardDao = (CardDao)context.getBean("CardDao");
         cardDao.print();
-
-
-        Object proxy = Proxy.newProxyInstance(
-                main.class.getClassLoader(),
-                new Class[]{CardDao.class},
-                new InvocationHandler() {
-                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                        System.out.println("proxy");
-                        return null;
-                    }
-                }
-        );
-
 
     }
 }
