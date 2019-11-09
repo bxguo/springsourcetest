@@ -1,6 +1,5 @@
 package com.aop.register;
 
-import com.aop.dao.CardDao;
 import org.springframework.beans.factory.FactoryBean;
 
 import java.lang.reflect.InvocationHandler;

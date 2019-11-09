@@ -1,6 +1,6 @@
 package com.aop.config;
 
-import com.aop.dao.CardDaoImpl;
+import com.aop.register.CardDaoImpl;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
