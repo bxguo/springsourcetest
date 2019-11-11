@@ -1,11 +1,7 @@
 package com.aop.config;
 
-import com.mysql.jdbc.Driver;
-import org.apache.ibatis.logging.log4j.Log4jImpl;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
-import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -17,7 +13,7 @@ import javax.sql.DataSource;
  * @time: 2019/11/6 11:10
  */
 @Configuration
-@MapperScan("com.aop.dao")
+@MapperScan(value = "com.aop.dao")
 public class DataConfig {
     @Bean
     public DataSource dataSource() {

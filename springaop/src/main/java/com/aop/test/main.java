@@ -1,8 +1,9 @@
 package com.aop.test;
 
+import com.aop.cjlib.OrmImpl;
 import com.aop.config.AppConfig;
+import com.aop.dao.IndexDaoimpl;
 import com.aop.register.CardDao;
-import com.aop.register.CardDaoImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -21,8 +22,11 @@ public class main {
         //List<Map<String, Object>> list = bean.list();
         //System.out.println(list);
 
-        CardDao cardDao = (CardDao) context.getBean("CardDao");
-        cardDao.print();
+        //IndexDaoimpl cardDao = context.getBean(IndexDaoimpl.class);
+        //cardDao.query();
+
+        System.out.println(context.getBean("userFactoryBean"));
+        System.out.println(context.getBean("&userFactoryBean"));
 
     }
 }

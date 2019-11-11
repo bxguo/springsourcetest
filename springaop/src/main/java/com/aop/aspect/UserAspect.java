@@ -28,12 +28,12 @@ public class UserAspect {
     //public void before(JoinPoint pjp){
     //    System.out.println(pjp.getArgs()[0]);
     //}
-    @Around("pintCut() && args(String)")
+
+    @Around("pintCut()")
     public void around(ProceedingJoinPoint pjp){
-        String args = pjp.getArgs()[0] + "modify";
-        String[] arr = {args};
         try {
-            pjp.proceed(arr);
+            System.out.println("aspect---------before---------");
+            pjp.proceed();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
